@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة مقترحات مواضيع مذكرات التخرج - قسم الكيمياء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #009688;
+            --accent-color: #ffc107;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* خلفية تعبر عن التخرج */
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                        url('https://images.unsplash.com/photo-1523050853063-915894912f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 95%;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-top: 12px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* أيقونة قبعة تخرج خفيفة في الخلفية */
+        .container::before {
+            content: "🎓";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            transform: rotate(-20deg);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 { color: var(--primary-color); font-size: 26px; margin-bottom: 10px; }
+        .header h2 { color: var(--secondary-color); font-size: 18px; }
+
+        .important-dates {
+            background: rgba(255, 249, 196, 0.7);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-right: 6px solid var(--accent-color);
+        }
+
+        .section-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 35px 0 20px 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group { margin-bottom: 22px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; color: #444; }
+        
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 8px rgba(0,150,136,0.2);
+            outline: none;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px dashed #ccc;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .option-item:hover { transform: translateX(-5px); }
+
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,77,64,0.3);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,77,64,0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>استمارة مقترحات مواضيع مذكرات التخرج (Master)</h1>
+        <h2>قسم الكيمياء - دفعة 2026-2027 🎓</h2>
+        <p>بإشراف اللجنة العلمية للقسم</p>
+    </div>
+
+    <div class="important-dates">
+        <strong>📅 مواعيد تنظيمية هامة:</strong>
+        <ul style="list-style: none; padding-right: 10px; margin-top: 10px;">
+            <li>• آخر أجل لاستقبال المقترحات: <b>05/05/2026</b></li>
+            <li>• تقييم ونشر المواضيع: <b>06/05/2026</b></li>
+            <li>• توزيع المواضيع على الطلبة: <b>07/05/2026</b></li>
+        </ul>
+    </div>
+
+    <form action="https://formspree.io/f/pg.dep.chemie@gmail.com" method="POST">
+        
+        <div class="section-title">👤 القسم الأول: معلومات الأستاذ المشرف</div>
+        <div class="form-group">
+            <label>الاسم واللقب:</label>
+            <input type="text" name="الاسم_الكامل" placeholder="أدخل اسمك الكامل هنا" required>
+        </div>
+        <div class="form-group">
+            <label>الرتبة العلمية:</label>
+            <select name="رتبة_المشرف" required>
+                <option value="">اختر الرتبة...</option>
+                <option>أستاذ</option>
+                <option>أستاذ محاضر "أ"</option>
+                <option>أستاذ محاضر "ب"</option>
+                <option>أستاذ مساعد "أ"</option>
+                <option>أستاذ مساعد "ب"</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>البريد الإلكتروني المهني:</label>
+            <input type="email" name="بريد_التواصل" placeholder="email@univ.dz" required>
+        </div>
+
+        <div class="section-title">👥 القسم الثاني: الأستاذ المساعد (إن وجد)</div>
+        <div class="form-group">
+            <label>اسم الأستاذ المساعد:</label>
+            <input type="text" name="المشرف_المساعد" placeholder="الاسم واللقب">
+        </div>
+        <div class="form-group">
+            <label>الرتبة العلمية (المساعد):</label>
+            <select name="رتبة_المساعد">
+                <option value="لا يوجد">لا يوجد</option>
+                <option>أستاذ</option>
+                <option>أستاذ محاضر "أ/ب"</option>
+                <option>دكتور / طالب دكتوراه</option>
+            </select>
+        </div>
+
+        <div class="section-title">🧪 القسم الثالث: تفاصيل موضوع التخرج</div>
+        <div class="form-group">
+            <label>التخصص المستهدف:</label>
+            <div class="radio-grid">
+                <label class="option-item"><input type="radio" name="specialty" value="كيمياء تحليلية" required> كيمياء تحليلية</label>
+                <label class="option-item"><input type="radio" name="specialty" value="كيمياء عضوية"> كيمياء عضوية</label>
+                <label class="option-item"><input type="radio" name="specialty" value="كيمياء المواد"> كيمياء المواد</label>
+                <label class="option-item"><input type="radio" name="specialty" value="كيمياء صيدلانية"> كيمياء صيدلانية</label>
+                <label class="option-item"><input type="radio" name="specialty" value="كيمياء البيئة"> كيمياء البيئة</label>
+                <label class="option-item"><input type="radio" name="specialty" value="مواد طبيعية"> مواد طبيعية</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>عنوان الموضوع (باللغة العربية):</label>
+            <input type="text" name="العنوان_بالعربية" required>
+        </div>
+        <div class="form-group">
+            <label>Title of the Subject (English):</label>
+            <input type="text" name="title_english" dir="ltr" required>
+        </div>
+
+        <div class="form-group">
+            <label>طبيعة العمل:</label>
+            <div class="radio-grid">
+                <label class="option-item"><input type="checkbox" name="type" value="نظري"> نظري</label>
+                <label class="option-item"><input type="checkbox" name="type" value="تطبيقي"> تطبيقي</label>
+                <label class="option-item"><input type="checkbox" name="type" value="قرار 1275"> مؤسسة ناشئة (1275)</label>
+            </div>
+        </div>
+
+        <div class="section-title">📝 القسم الرابع: ملخص المشروع</div>
+        <div class="form-group">
+            <label>ملخص موجز:</label>
+            <textarea name="summary" rows="5" placeholder="أدخل ملخصاً تقنياً للموضوع..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>الكلمات المفتاحية:</label>
+            <input type="text" name="keywords" placeholder="Keyword 1, Keyword 2...">
+        </div>
+
+        <button type="submit">إرسال المقترح إلى pg.dep.chemie@gmail.com</button>
+    </form>
+
+    <div class="footer">
+        تلقائياً، سيتم تحويل هذه البيانات إلى جدول Excel مركزي فور الإرسال.<br>
+        نشكركم على مساهمتكم في إثراء البحث العلمي بالقسم.
+    </div>
+</div>
+
+</body>
+</html>
