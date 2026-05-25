@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -22,7 +21,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* خلفية تعبر عن التخرج */
             background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                         url('https://images.unsplash.com/photo-1523050853063-915894912f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -43,7 +41,6 @@
             overflow: hidden;
         }
 
-        /* أيقونة قبعة تخرج خفيفة في الخلفية */
         .container::before {
             content: "🎓";
             position: absolute;
@@ -93,6 +90,7 @@
             border-radius: 10px;
             font-family: 'Cairo', sans-serif;
             transition: all 0.3s;
+            box-sizing: border-box;
         }
 
         input:focus, select:focus, textarea:focus {
@@ -162,22 +160,29 @@
     <div class="important-dates">
         <strong>📅 مواعيد تنظيمية هامة:</strong>
         <ul style="list-style: none; padding-right: 10px; margin-top: 10px;">
-            <li>• آخر أجل لاستقبال المقترحات: <b>05/05/2026</b></li>
-            <li>• تقييم ونشر المواضيع: <b>06/05/2026</b></li>
-            <li>• توزيع المواضيع على الطلبة: <b>07/05/2026</b></li>
+            <li>• آخر أجل لاستقبال المقترحات: <b>25/05/2026</b></li>
+            <li>• تقييم ونشر المواضيع: <b>26/05/2026</b></li>
+            <li>• توزيع المواضيع على الطلبة: <b>01/06/2026</b></li>
         </ul>
     </div>
 
+    <!-- ======================================================
+         تم تغيير جميع قيم name="" إلى أسماء إنجليزية فقط
+         لحل مشكلة الحقول الفارغة في Google Sheets
+         Google Apps Script لا يقرأ أسماء الحقول العربية بشكل صحيح
+         ====================================================== -->
     <form action="https://script.google.com/macros/s/AKfycby5M744MfIz53wcu5sd6T3nRkILypHqAbZhf_cyuC_D-McSJ10jrVo7M5RCqYC_CDc50A/exec" method="POST">
         
         <div class="section-title">👤 القسم الأول: معلومات الأستاذ المشرف</div>
         <div class="form-group">
             <label>الاسم واللقب:</label>
-            <input type="text" name="الاسم_الكامل" placeholder="أدخل اسمك الكامل هنا" required>
+            <!-- كان: name="الاسم_الكامل" -->
+            <input type="text" name="supervisor_fullname" placeholder="أدخل اسمك الكامل هنا" required>
         </div>
         <div class="form-group">
             <label>الرتبة العلمية:</label>
-            <select name="رتبة_المشرف" required>
+            <!-- كان: name="رتبة_المشرف" -->
+            <select name="supervisor_rank" required>
                 <option value="">اختر الرتبة...</option>
                 <option>أستاذ</option>
                 <option>أستاذ محاضر "أ"</option>
@@ -188,18 +193,21 @@
         </div>
         <div class="form-group">
             <label>البريد الإلكتروني المهني:</label>
-            <input type="email" name="بريد_التواصل" placeholder="email@univ.dz" required>
+            <!-- كان: name="بريد_التواصل" -->
+            <input type="email" name="supervisor_email" placeholder="email@univ.dz" required>
         </div>
 
         <div class="section-title">👥 القسم الثاني: الأستاذ المساعد (إن وجد)</div>
         <div class="form-group">
             <label>اسم الأستاذ المساعد:</label>
-            <input type="text" name="المشرف_المساعد" placeholder="الاسم واللقب">
+            <!-- كان: name="المشرف_المساعد" -->
+            <input type="text" name="cosupervisor_name" placeholder="الاسم واللقب">
         </div>
         <div class="form-group">
             <label>الرتبة العلمية (المساعد):</label>
-            <select name="رتبة_المساعد">
-                <option value="لا يوجد">لا يوجد</option>
+            <!-- كان: name="رتبة_المساعد" -->
+            <select name="cosupervisor_rank">
+                <option value="none">لا يوجد</option>
                 <option>أستاذ</option>
                 <option>أستاذ محاضر "أ/ب"</option>
                 <option>دكتور / طالب دكتوراه</option>
@@ -210,6 +218,7 @@
         <div class="form-group">
             <label>التخصص المستهدف:</label>
             <div class="radio-grid">
+                <!-- كان: name="specialty" بدون تغيير لأنه كان إنجليزياً أصلاً -->
                 <label class="option-item"><input type="radio" name="specialty" value="كيمياء تحليلية" required> كيمياء تحليلية</label>
                 <label class="option-item"><input type="radio" name="specialty" value="كيمياء عضوية"> كيمياء عضوية</label>
                 <label class="option-item"><input type="radio" name="specialty" value="كيمياء المواد"> كيمياء المواد</label>
@@ -221,29 +230,34 @@
 
         <div class="form-group">
             <label>عنوان الموضوع (باللغة العربية):</label>
-            <input type="text" name="العنوان_بالعربية" required>
+            <!-- كان: name="العنوان_بالعربية"  ← هذا كان سبب المشكلة الرئيسي -->
+            <input type="text" name="title_arabic" required>
         </div>
         <div class="form-group">
             <label>Title of the Subject (English):</label>
+            <!-- هذا كان يعمل لأن اسمه إنجليزي أصلاً -->
             <input type="text" name="title_english" dir="ltr" required>
         </div>
 
         <div class="form-group">
             <label>طبيعة العمل:</label>
             <div class="radio-grid">
-                <label class="option-item"><input type="checkbox" name="type" value="نظري"> نظري</label>
-                <label class="option-item"><input type="checkbox" name="type" value="تطبيقي"> تطبيقي</label>
-                <label class="option-item"><input type="checkbox" name="type" value="قرار 1275"> مؤسسة ناشئة (1275)</label>
+                <!-- كان: name="type" — "type" كلمة محجوزة في بعض الأنظمة، تم تغييرها -->
+                <label class="option-item"><input type="checkbox" name="work_type" value="نظري"> نظري</label>
+                <label class="option-item"><input type="checkbox" name="work_type" value="تطبيقي"> تطبيقي</label>
+                <label class="option-item"><input type="checkbox" name="work_type" value="مؤسسة ناشئة 1275"> مؤسسة ناشئة (1275)</label>
             </div>
         </div>
 
         <div class="section-title">📝 القسم الرابع: ملخص المشروع</div>
         <div class="form-group">
             <label>ملخص موجز:</label>
+            <!-- كان: name="summary" — كان يعمل، تم إبقاؤه -->
             <textarea name="summary" rows="5" placeholder="أدخل ملخصاً تقنياً للموضوع..."></textarea>
         </div>
         <div class="form-group">
             <label>الكلمات المفتاحية:</label>
+            <!-- كان: name="keywords" — كان يعمل، تم إبقاؤه -->
             <input type="text" name="keywords" placeholder="Keyword 1, Keyword 2...">
         </div>
 
